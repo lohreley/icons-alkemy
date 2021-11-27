@@ -12,13 +12,11 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "icon")
 @Getter
 @Setter
-
-public class IconEntity {
+public class Icon {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String imagen;
@@ -34,9 +32,9 @@ public class IconEntity {
     private String historia;
 
     @ManyToMany(mappedBy = "icons", cascade = CascadeType.ALL)
-    private List<PaisEntity> paises = new ArrayList<>();
+    private List<Pais> paises = new ArrayList<>();
 
-    public void addPais(PaisEntity pais) {this.paises.add(pais);}
+    public void addPais(Pais pais) {this.paises.add(pais);}
 
-    public void removePais(PaisEntity pais) {this.paises.remove(pais);}
+    public void removePais(Pais pais) {this.paises.remove(pais);}
 }

@@ -11,10 +11,10 @@ import java.util.Set;
 @Table(name = "pais")
 @Getter
 @Setter
-public class PaisEntity {
+public class Pais {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String imagen;
@@ -28,10 +28,8 @@ public class PaisEntity {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "continente_id", insertable = false, updatable = false)
-    private ContinenteEntity continente;
+    private Continente continente;
 
-    @Column(name = "continente_id", nullable = false)
-    private Long continenteId;
 
     @ManyToMany(
             cascade = {
@@ -42,7 +40,7 @@ public class PaisEntity {
             name = "icon_pais",
             joinColumns = @JoinColumn(name = "pais_id"),
             inverseJoinColumns = @JoinColumn(name = "icon_id"))
-    private Set<IconEntity> icons = new HashSet<>();
+    private Set<Icon> icons = new HashSet<>();
 
     @Override
     public boolean equals(Object obj){
@@ -50,7 +48,7 @@ public class PaisEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        final PaisEntity other = (PaisEntity) obj;
+        final Pais other = (Pais) obj;
         return other.id == this.id;
     }
 
